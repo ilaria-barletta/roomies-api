@@ -31,7 +31,7 @@ SECRET_KEY = "django-insecure-3j6i8y(&e3)d$7_k4hzrlr91z6^(8*cp(e7l#z49$=$=y=dpyo
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "roomiesapi.herokuapp.com",
+    "roomiesapi-637170cefd22.herokuapp.com",
     "localhost",
 ]
 
