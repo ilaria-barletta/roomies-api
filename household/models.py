@@ -13,3 +13,10 @@ class Household(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class HouseholdMember(models.Model):
+    user = models.ForeignKey(User, related_name="memberships", on_delete=models.CASCADE)
+    household = models.ForeignKey(
+        Household, related_name="members", on_delete=models.CASCADE
+    )
