@@ -3,14 +3,11 @@ from .models import Household, HouseholdMember
 
 
 class HouseholdMemberSerializer(serializers.ModelSerializer):
-    user = serializers.ReadOnlyField(source="user.username")
+    user_name = serializers.ReadOnlyField(source="user.username")
 
     class Meta:
         model = HouseholdMember
-        fields = [
-            "id",
-            "user",
-        ]
+        fields = ["id", "user", "user_name"]
 
 
 class HouseholdSerializer(serializers.ModelSerializer):
