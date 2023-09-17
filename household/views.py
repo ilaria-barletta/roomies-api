@@ -1,6 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import Household
+from .models import Household, HouseholdMember
 from .serializers import HouseholdSerializer, HouseholdMemberSerializer
 from roomies_api.permissions import IsCreatorOrReadOnly
 from django.http import Http404
@@ -58,3 +58,15 @@ class HouseholdMembersList(APIView):
             serializer.save(household=household)
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class HouseholdMembersDetail(APIView):
+    def get(self, request, household_pk, pk):
+        member = HouseholdMember.objects.get(pk=pk)
+        serializer = HouseholdMemberSerializer(member)
+        return Response(serializer.data)
+
+    def delete(self, request, household_pk, pk):
+        member = HouseholdMember.objects.get(pk=pk)
+        member.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
