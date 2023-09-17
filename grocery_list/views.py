@@ -1,7 +1,7 @@
 from rest_framework import generics
 from .models import GroceryList
 from .serializers import GroceryListSerializer
-from roomies_api.permissions import IsCreatorOrReadOnly
+from roomies_api.permissions import CanManageGroceryList
 
 
 class GroceryListList(generics.ListCreateAPIView):
@@ -27,5 +27,5 @@ class GroceryListList(generics.ListCreateAPIView):
 
 class GroceryListDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = GroceryListSerializer
-    permission_classes = [IsCreatorOrReadOnly]
+    permission_classes = [CanManageGroceryList]
     queryset = GroceryList.objects.all()
