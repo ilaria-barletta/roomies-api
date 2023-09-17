@@ -10,3 +10,6 @@ class Household(models.Model):
         validators=[MaxValueValidator(31), MinValueValidator(1)], default=1
     )
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
