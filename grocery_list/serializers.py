@@ -17,7 +17,6 @@ class GroceryItemSerializer(serializers.ModelSerializer):
 
 class GroceryListSerializer(serializers.ModelSerializer):
     creator = serializers.ReadOnlyField(source="creator.username")
-    household = serializers.ReadOnlyField(source="household.name")
     # DJ Rest documentation
     # https://www.django-rest-framework.org/api-guide/relations/#example
     items = GroceryItemSerializer(many=True, read_only=True)

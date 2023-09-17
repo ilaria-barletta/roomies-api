@@ -1,24 +1,31 @@
-from rest_framework.views import APIView
-from rest_framework.response import Response
+from rest_framework import generics
 from .models import GroceryList
 from .serializers import GroceryListSerializer
 from roomies_api.permissions import IsCreatorOrReadOnly
-from django.http import Http404
-from rest_framework import status
 
 
-class GroceryListList(APIView):
-    def get(self, request):
-        lists = GroceryList.objects.all()
+class GroceryListList(generics.ListCreateAPIView):
+    serializer_class = GroceryListSerializer
+
+    def get_queryset(self):
+        queryset = GroceryList.objects.all()
 
         # From django rest documentation
         # https://www.django-rest-framework.org/api-guide/filtering/
         household_id = self.request.query_params.get("household")
 
         if household_id is not None:
-            lists = GroceryList.objects.filter(household__pk=household_id)
+            queryset = GroceryList.objects.filter(household__pk=household_id)
         else:
-            lists = GroceryList.objects.filter(creator=self.request.user)
+            queryset = GroceryList.objects.filter(creator=self.request.user)
 
-        serializer = GroceryListSerializer(lists, many=True)
-        return Response(serializer.data)
+        return queryset
+
+    def perform_create(self, serializer):
+        serializer.save(creator=self.request.user)
+
+
+class GroceryListDetail(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = GroceryListSerializer
+    permission_classes = [IsCreatorOrReadOnly]
+    queryset = GroceryList.objects.all()

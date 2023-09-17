@@ -3,4 +3,5 @@ from grocery_list import views
 
 urlpatterns = [
     path("grocerylists/", views.GroceryListList.as_view()),
+    path("grocerylists/<int:pk>/", views.GroceryListDetail.as_view()),
 ]
