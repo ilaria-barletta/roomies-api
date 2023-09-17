@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "household",
+    "grocery_list",
 ]
 
 MIDDLEWARE = [
