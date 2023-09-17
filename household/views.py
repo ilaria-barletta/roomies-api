@@ -1,22 +1,37 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework import generics
 from .models import Household, HouseholdMember
 from .serializers import HouseholdSerializer, HouseholdMemberSerializer
-from roomies_api.permissions import IsCreatorOrReadOnly
+from roomies_api.permissions import CanManageHousehold
+from rest_framework.permissions import IsAuthenticated
 from django.http import Http404
 from rest_framework import status
 
 
-class HouseholdList(APIView):
-    def get(self, request):
-        households = Household.objects.all()
-        serializer = HouseholdSerializer(households, many=True)
-        return Response(serializer.data)
+class HouseholdList(generics.ListCreateAPIView):
+    serializer_class = HouseholdSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        creator_households = Household.objects.filter(creator=user)
+
+        user_memberships = list(user.memberships.all())
+        user_household_ids = list(map(lambda m: m.household.id, user_memberships))
+        member_households = Household.objects.filter(pk__in=user_household_ids)
+
+        # Found here
+        # https://stackoverflow.com/questions/431628/how-to-combine-multiple-querysets-in-django
+        return creator_households | member_households
+
+    def perform_create(self, serializer):
+        serializer.save(creator=self.request.user)
 
 
 class HouseholdDetail(APIView):
     serializer_class = HouseholdSerializer
-    permission_classes = [IsCreatorOrReadOnly]
+    permission_classes = [CanManageHousehold]
 
     def get_object(self, pk):
         try:
