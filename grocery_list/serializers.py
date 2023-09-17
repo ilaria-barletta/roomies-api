@@ -33,6 +33,23 @@ class GroceryListSerializer(serializers.ModelSerializer):
             GroceryItem.objects.create(list=list, creator=user, **item_data)
         return list
 
+    def update(self, instance, validated_data):
+        instance.name = validated_data.get("name", instance.name)
+        instance.is_complete = validated_data.get("is_complete", instance.is_complete)
+        instance.save()
+
+        # Replace the items with the updated list
+        instance.items.all().delete()
+
+        items_data = validated_data.get("items")
+
+        user = self.context["request"].user
+
+        for item_data in items_data:
+            GroceryItem.objects.create(list=instance, creator=user, **item_data)
+
+        return instance
+
     class Meta:
         model = GroceryList
         fields = ["id", "creator", "household", "name", "is_complete", "items"]
