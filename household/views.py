@@ -1,3 +1,11 @@
-from django.shortcuts import render
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from .models import Household
+from .serializers import HouseholdSerializer
 
-# Create your views here.
+
+class HouseholdList(APIView):
+    def get(self, request):
+        households = Household.objects.all()
+        serializer = HouseholdSerializer(households, many=True)
+        return Response(serializer.data)
