@@ -6,7 +6,7 @@ class HouseholdMemberSerializer(serializers.ModelSerializer):
     user = serializers.ReadOnlyField(source="user.username")
 
     class Meta:
-        model = Household
+        model = HouseholdMember
         fields = [
             "id",
             "user",
