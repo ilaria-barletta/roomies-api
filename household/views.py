@@ -35,9 +35,9 @@ class HouseholdDetail(APIView):
 
     def get_object(self, pk):
         try:
-            profile = Household.objects.get(pk=pk)
-            self.check_object_permissions(self.request, profile)
-            return profile
+            household = Household.objects.get(pk=pk)
+            self.check_object_permissions(self.request, household)
+            return household
         except Household.DoesNotExist:
             raise Http404
 
@@ -55,6 +55,11 @@ class HouseholdDetail(APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk):
+        household = self.get_object(pk)
+        household.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class HouseholdMembersList(APIView):
