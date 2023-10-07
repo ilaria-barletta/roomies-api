@@ -74,6 +74,15 @@ class HouseholdMembersList(APIView):
             data=request.data, context={"request": request}
         )
 
+        user_id = request.data.get("user")
+        is_existing_member = household.members.all().filter(user=user_id)
+
+        if is_existing_member:
+            return Response(
+                "This user is already a member of this household.",
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
         if serializer.is_valid():
             serializer.save(household=household)
             return Response(serializer.data)
