@@ -9,4 +9,8 @@ urlpatterns = [
         "households/<int:household_pk>/members/<int:pk>",
         views.HouseholdMembersDetail.as_view(),
     ),
+    path(
+        "households/<int:household_pk>/availableusers",
+        views.HouseholdAvailableUsersList.as_view(),
+    ),
 ]

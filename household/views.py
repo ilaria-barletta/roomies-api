@@ -2,9 +2,10 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import generics
 from .models import Household, HouseholdMember
-from .serializers import HouseholdSerializer, HouseholdMemberSerializer
+from .serializers import HouseholdSerializer, HouseholdMemberSerializer, UserSerializer
 from roomies_api.permissions import CanManageHousehold
 from rest_framework.permissions import IsAuthenticated
+from django.contrib.auth.models import User
 from django.http import Http404
 from rest_framework import status
 
@@ -77,6 +78,16 @@ class HouseholdMembersList(APIView):
         user_id = request.data.get("user")
         is_existing_member = household.members.all().filter(user=user_id)
 
+        # String here makes sure that this works
+        # Before this, the creator could be added as a member as well
+        is_user_already_the_creator = str(user_id) == str(household.creator.id)
+
+        if is_user_already_the_creator:
+            return Response(
+                "This user created the household.",
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
         if is_existing_member:
             return Response(
                 "This user is already a member of this household.",
@@ -99,3 +110,17 @@ class HouseholdMembersDetail(APIView):
         member = HouseholdMember.objects.get(pk=pk)
         member.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class HouseholdAvailableUsersList(APIView):
+    def get(self, request, household_pk):
+        household = Household.objects.get(pk=household_pk)
+
+        user_memberships = list(household.members.all())
+        user_ids = list(map(lambda m: m.user.id, user_memberships))
+        user_ids.append(household.creator.id)
+        available_users = User.objects.exclude(id__in=user_ids)
+
+        serializer = UserSerializer(available_users, many=True)
+
+        return Response(serializer.data)
