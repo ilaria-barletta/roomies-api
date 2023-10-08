@@ -17,6 +17,13 @@ class GroceryList(models.Model):
 class GroceryItem(models.Model):
     name = models.CharField(max_length=255)
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
+    assignee = models.ForeignKey(
+        User,
+        on_delete=models.DO_NOTHING,
+        blank=True,
+        null=True,
+        related_name="assigned_grocery_items",
+    )
     is_complete = models.BooleanField()
     list = models.ForeignKey(
         GroceryList, on_delete=models.CASCADE, related_name="items"
