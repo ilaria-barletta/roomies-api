@@ -2,7 +2,7 @@ from rest_framework import generics, permissions, filters
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import GroceryList, GroceryItem
 from .serializers import GroceryListSerializer, GroceryItemSerializer
-from roomies_api.permissions import CanManageGroceryList
+from roomies_api.permissions import CanManageGroceryList, CanManageGroceryItem
 
 
 class GroceryListList(generics.ListCreateAPIView):
@@ -37,3 +37,9 @@ class GroceryItemList(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(creator=self.request.user)
+
+
+class GroceryItemDetail(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = GroceryItemSerializer
+    permission_classes = [CanManageGroceryItem]
+    queryset = GroceryItem.objects.all()

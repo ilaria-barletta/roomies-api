@@ -18,3 +18,9 @@ class CanManageGroceryList(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
         is_member = obj.household.members.all().filter(user=request.user)
         return obj.creator == request.user or is_member
+
+
+class CanManageGroceryItem(permissions.BasePermission):
+    def has_object_permission(self, request, view, obj):
+        is_member = obj.list.household.members.all().filter(user=request.user)
+        return obj.creator == request.user or is_member
