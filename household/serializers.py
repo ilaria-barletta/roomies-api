@@ -19,8 +19,17 @@ class UserSerializer(serializers.ModelSerializer):
 
 class HouseholdSerializer(serializers.ModelSerializer):
     creator = serializers.ReadOnlyField(source="creator.username")
+    creator_id = serializers.ReadOnlyField(source="creator.id")
     members = HouseholdMemberSerializer(many=True, read_only=True)
 
     class Meta:
         model = Household
-        fields = ["id", "creator", "rent", "rent_due_day", "name", "members"]
+        fields = [
+            "id",
+            "creator",
+            "rent",
+            "rent_due_day",
+            "name",
+            "members",
+            "creator_id",
+        ]
