@@ -7,7 +7,6 @@ from roomies_api.permissions import CanManageGroceryList, CanManageGroceryItem
 
 class GroceryListList(generics.ListCreateAPIView):
     serializer_class = GroceryListSerializer
-    permission_classes = [CanManageGroceryList]
     queryset = GroceryList.objects.all()
     filter_backends = [
         filters.OrderingFilter,

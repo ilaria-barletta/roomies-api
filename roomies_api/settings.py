@@ -42,7 +42,11 @@ REST_FRAMEWORK = {
             if "DEV" in os.environ
             else "dj_rest_auth.jwt_auth.JWTCookieAuthentication"
         )
-    ]
+    ],
+    # Found here: https://www.django-rest-framework.org/api-guide/permissions/
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
+    ],
 }
 
 if "DEV" not in os.environ:
