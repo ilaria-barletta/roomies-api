@@ -9,6 +9,8 @@ class Household(models.Model):
     rent_due_day = models.IntegerField(
         validators=[MaxValueValidator(31), MinValueValidator(1)], default=1
     )
+    rent_is_due = models.BooleanField(default=False)
+    creator_has_paid_rent = models.BooleanField(default=False)
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -20,3 +22,4 @@ class HouseholdMember(models.Model):
     household = models.ForeignKey(
         Household, related_name="members", on_delete=models.CASCADE
     )
+    has_paid_rent = models.BooleanField(default=False)
