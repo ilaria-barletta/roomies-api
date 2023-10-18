@@ -106,6 +106,16 @@ class HouseholdMembersDetail(APIView):
         serializer = HouseholdMemberSerializer(member)
         return Response(serializer.data)
 
+    def put(self, request, household_pk, pk):
+        member = HouseholdMember.objects.get(pk=pk)
+        serializer = HouseholdMemberSerializer(
+            member, data=request.data, context={"request": request}
+        )
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
     def delete(self, request, household_pk, pk):
         member = HouseholdMember.objects.get(pk=pk)
         member.delete()

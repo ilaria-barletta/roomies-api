@@ -8,7 +8,7 @@ class HouseholdMemberSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = HouseholdMember
-        fields = ["id", "user", "user_name"]
+        fields = ["id", "user", "user_name", "has_paid_rent"]
 
 
 class UserSerializer(serializers.ModelSerializer):
