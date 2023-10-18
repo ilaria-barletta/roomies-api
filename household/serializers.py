@@ -32,4 +32,6 @@ class HouseholdSerializer(serializers.ModelSerializer):
             "name",
             "members",
             "creator_id",
+            "rent_is_due",
+            "creator_has_paid_rent",
         ]

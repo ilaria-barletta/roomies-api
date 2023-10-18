@@ -134,3 +134,18 @@ class HouseholdAvailableUsersList(APIView):
         serializer = UserSerializer(available_users, many=True)
 
         return Response(serializer.data)
+
+
+class HouseholdRentDue(APIView):
+    def post(self, request, household_pk):
+        household = Household.objects.get(pk=household_pk)
+
+        household.rent_is_due = True
+        household.creator_has_paid_rent = False
+        household.save()
+
+        for member in household.members.all():
+            member.has_paid_rent = False
+            member.save()
+
+        return Response(status=status.HTTP_204_NO_CONTENT)

@@ -13,4 +13,8 @@ urlpatterns = [
         "households/<int:household_pk>/availableusers",
         views.HouseholdAvailableUsersList.as_view(),
     ),
+    path(
+        "households/<int:household_pk>/markrentdue",
+        views.HouseholdRentDue.as_view(),
+    ),
 ]
