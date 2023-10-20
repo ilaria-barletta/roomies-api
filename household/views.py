@@ -1,6 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import generics
+from rest_framework import generics, filters
 from .models import Household, HouseholdMember
 from .serializers import HouseholdSerializer, HouseholdMemberSerializer, UserSerializer
 from roomies_api.permissions import CanManageHousehold
@@ -122,18 +122,25 @@ class HouseholdMembersDetail(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-class HouseholdAvailableUsersList(APIView):
-    def get(self, request, household_pk):
+class HouseholdAvailableUsersList(generics.ListAPIView):
+    serializer_class = UserSerializer
+    filter_backends = [
+        filters.SearchFilter,
+    ]
+    search_fields = [
+        "username",
+    ]
+
+    def get_queryset(self):
+        # Found here:
+        # https://stackoverflow.com/questions/76201342/how-to-pass-a-url-parameter-in-get-queryset-method-in-django-rest-view
+        household_pk = self.kwargs["household_pk"]
         household = Household.objects.get(pk=household_pk)
 
         user_memberships = list(household.members.all())
         user_ids = list(map(lambda m: m.user.id, user_memberships))
         user_ids.append(household.creator.id)
-        available_users = User.objects.exclude(id__in=user_ids)
-
-        serializer = UserSerializer(available_users, many=True)
-
-        return Response(serializer.data)
+        return User.objects.exclude(id__in=user_ids)
 
 
 class HouseholdRentDue(APIView):
