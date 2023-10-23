@@ -1,39 +1,51 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Roomies API 
+This repository contains the code which provides the API endpoints necessary to allow the Roomies application to retrieve and store its data. 
 
-Welcome,
+# Planning & Design 
 
-This is the Code Institute student template for Codeanywhere. If you are using Gitpod then you need [this template](https://github.com/Code-Institute-Org/gitpod-full-template) instead.  We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+## Database Design 
+![Roomies DB Diagram](readme_images/db-diagram.png)
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Codeanywhere and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **August 30th, 2023**
+## API Goals 
+* Allow users to register/login to the Roomies app 
+* Allow users to create `Household`'s, which is the primary model that connects all the functionality of the app. 
+* Allow users to add/remove other users to their `Household`
+* Allow users to create `Grocery Lists` for their `Household`
+* Allow users to add `Grocery Items` to their `Grocery Lists`
+* Allow users to add `Comments` to their `Grocery Lists`
+* Provide CRUD functionality for the database models created 
 
-## Codeanywhere Reminders
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere, in the terminal, type:
+# Technologies Used 
+* Django 
+* Python 
+* ElephantSQL 
+* Django Rest Framework
+* Django Rest Auth 
+* Django Filters 
 
-`python3 -m http.server`
+# Deployment, Forking and Cloning 
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
+## Deployment
+The project has been deployed using Heroku. Here are the step to follow for the deployement:
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere with no-cache, you can use this alias for `python3 -m http.server`.
+1. Access your Heroku account and click on "create a new app", name the app and select the region before hitting the create app button.   
+2. Navigate to the settings tab and create config vars for cloudinary, the database, and the secret key
+3. Navigate to the deploy section and select Github as deployment method. After confirming that we want to connect to Github we can then search for the Github repository name. Once we find it we can click on connect. 
+5. Scroll down and select enable automatic deploys
 
-`http_server`
+The live link to my project is here: https://roomiesapi-637170cefd22.herokuapp.com/
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
 
-In Codeanywhere you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+## Forking & Cloning
+To fork this repository click on the "Fork" button in the top right of the repository in Github. 
 
-To log into the Heroku toolbelt CLI:
+To clone this repository:
+1. Click the "Code" button in the repository. 
+2. Copy the clone link.
+3. Use git to clone the copied link: `git clone LINK`. 
 
-1. Log in to your Heroku account and go to _Account Settings_ in the menu under your avatar.
-2. Scroll down to the _API Key_ and click _Reveal_
-3. Copy the key
-4. In Codeanywhere, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
-
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
-
----
-
-Happy coding!
+___
+# References & Credits
+* TBD
