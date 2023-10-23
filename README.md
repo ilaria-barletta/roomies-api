@@ -24,6 +24,41 @@ This repository contains the code which provides the API endpoints necessary to 
 * Django Rest Auth 
 * Django Filters 
 
+# Features 
+
+## Households 
+I have created API's to allow users to interact with `Household` related functionality. Below is a list of the endpoints that the React application can access: 
+
+| Endpoint        | HTTP Methods     | Description  |
+| --------------- | ---------------- | ------------ |
+| `/households`   | `GET`, `POST`    | Allow users to list households and create new households |
+| `/households/:id` | `GET`, `DELETE`, `PUT` | Allow users to retrieve, delete, or update a single household | 
+| `/households/:id/members` | `GET`, `POST` | Allow users to list or add members to their household | 
+| `/households/:id/members/:memberId` | `GET`, `PUT`, `DELETE` | Allow users to retrieve, update, or delete a member of a household |
+| `/households/:id/availableusers` | `GET` | Allow users to retrieve a list of the possible members that can be added to a household |
+| `/households/:id/markrentdue` | `POST` | Allow household creators to mark the rent of their household as due. |
+
+### Example
+Below is a screenshot from the API showing an example of one of the above API's 
+![Household API Example](readme_images/household-example.png)
+
+## Grocery Lists
+I have also created API's to allow users to manage `Grocery Lists` for their household. Below is a list of endpoints that the React application can access:
+
+| Endpoint        | HTTP Methods     | Description  |
+| --------------- | ---------------- | ------------ |
+| `/grocerylists`   | `GET`, `POST`    | Allow users to list grocery lists and create new grocery lists |
+| `/grocerylists/:id`   | `GET`, `DELETE`, `PUT`    | Allow users to retrieve, update, or delete a single grocery list |
+| `/groceryitems`   | `GET`, `POST`    | Allow users to list grocery items for a particular list, as well as create new ones. |
+| `/groceryitems/:id`   | `GET`, `PUT`, `DELETE`    | Allow users to retrieve, update, or delete a particular grocery list item |
+| `/grocerylistcomments`   | `GET`, `POST`    | Allow users to list the comments for a particular grocery list as well as create new ones. |
+| `/grocerylistcomments/:id`   | `GET`, `PUT`, `DELETE`    | Allow users to retrieve, update, or delete a particular grocery list comment |
+
+### Example
+Below is a screenshot from the API showing an example of one of the above API's 
+![Grocery List API Example](readme_images/grocery-example.png)
+
+
 # Deployment, Forking and Cloning 
 
 ## Deployment
