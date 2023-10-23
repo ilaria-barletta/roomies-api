@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import GroceryList, GroceryItem
+from .models import GroceryList, GroceryItem, GroceryListComment
 
 
 class GroceryItemSerializer(serializers.ModelSerializer):
@@ -16,6 +16,19 @@ class GroceryItemSerializer(serializers.ModelSerializer):
             "assignee",
             "list",
             "assignee_name",
+        ]
+
+
+class GroceryListCommentSerializer(serializers.ModelSerializer):
+    creator = serializers.ReadOnlyField(source="creator.username")
+
+    class Meta:
+        model = GroceryListComment
+        fields = [
+            "id",
+            "creator",
+            "content",
+            "list",
         ]
 
 
