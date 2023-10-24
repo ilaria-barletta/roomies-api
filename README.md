@@ -58,6 +58,23 @@ I have also created API's to allow users to manage `Grocery Lists` for their hou
 Below is a screenshot from the API showing an example of one of the above API's 
 ![Grocery List API Example](readme_images/grocery-example.png)
 
+## Authentication and Permissions 
+
+### Authentication 
+The use of the API is restricted to authenticated users only. Users who have not logged in will receive a `HTTP 403` if they try and access the API without logging in. 
+
+### Permissions 
+I have created several custom permissions which allows me to further restrict access to the data, beyond just ensuring that the user has logged in. They have been detailed below. 
+
+| Name            | Description  |
+| --------------- |------------ |
+| `IsCreatorOrReadOnly`   | Allows write access to a model if the current user is the `creator`, otherwise read-only access.    |
+| `CanManageHousehold`   | Allows read/write access to a `Household` model if the user is either the `creator` or exists in the `members` relation list    |
+| `CanManageGroceryList`   | Allows read/write access to a `GroceryList` model if the user is either the `creator` or exists in the `members` relation list of the `Household` associated with the list.   |
+| `CanManageGroceryItem`   | Allows read/write access to a `GroceryListItem` model if the user is either the `creator` or exists in the `members` relation list of the `Household` associated with the list that the item belongs to.   |
+
+# Agile Development 
+I have created a Github project to track the user stories for the entire application (API and UI) and that can be viewed [here](https://github.com/users/ilaria-barletta/projects/3/views/1)
 
 # Deployment, Forking and Cloning 
 
