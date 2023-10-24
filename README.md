@@ -76,6 +76,8 @@ I have created several custom permissions which allows me to further restrict ac
 # Agile Development 
 I have created a Github project to track the user stories for the entire application (API and UI) and that can be viewed [here](https://github.com/users/ilaria-barletta/projects/3/views/1)
 
+I have also created several Github Milestones to track the Epics for the application and they can be viewed [here](https://github.com/ilaria-barletta/roomies-api/milestones?with_issues=no)
+
 # Deployment, Forking and Cloning 
 
 ## Deployment
