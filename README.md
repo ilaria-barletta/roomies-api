@@ -78,6 +78,116 @@ I have created a Github project to track the user stories for the entire applica
 
 I have also created several Github Milestones to track the Epics for the application and they can be viewed [here](https://github.com/ilaria-barletta/roomies-api/milestones?with_issues=no)
 
+# Testing 
+
+## Manual Testing 
+I have tested the app thoroughly and you can see the outcome of the manual testing below where I've detailed each feature tested in separate tables. You can also see the user story in Github which contains the acceptance criteria which aided the testing. 
+
+1. Create a household [story](https://github.com/ilaria-barletta/roomies-api/issues/3)
+
+| Test        | Outcome     |
+| ----------- | ----------- |
+| Only logged in users can create a household       | Pass        |
+| Users must provide a name for their household      | Pass        |
+| The user is able to provide `rent` as an optional field      | Pass        |
+
+2. Update a household [story](https://github.com/ilaria-barletta/roomies-api/issues/4)
+
+| Test        | Outcome     |
+| ----------- | ----------- |
+| Only logged in users can update a household       | Pass        |
+| Users must provide a name for their household      | Pass        |
+| The user is able to provide `rent` as an optional field      | Pass        |
+| Only the `creator` or a `member` of the household can update the household      | Pass        |
+
+3. View a household [story](https://github.com/ilaria-barletta/roomies-api/issues/5)
+
+| Test        | Outcome     |
+| ----------- | ----------- |
+| Only logged in users can view a household       | Pass        |
+| Only the `creator` or a `member` of the household can view the household     | Pass        |
+
+4. Create a grocery list [story](https://github.com/ilaria-barletta/roomies-api/issues/17)
+
+| Test        | Outcome     |
+| ----------- | ----------- |
+| Users must provide a `household` to associate with their grocery list     | Pass        |
+| Users must provide a `name` for their grocery list     | Pass        |
+
+5. View a grocery list [story](https://github.com/ilaria-barletta/roomies-api/issues/16)
+
+| Test        | Outcome     |
+| ----------- | ----------- |
+| Only users who are a member or the creator of the lists associated `household` can view the list    | Pass        |
+| Only logged in users can view the list   | Pass        |
+
+6. Delete a grocery list [story](https://github.com/ilaria-barletta/roomies-api/issues/15)
+
+| Test        | Outcome     |
+| ----------- | ----------- |
+| Only users who are a member or the creator of the lists associated `household` can delete the list    | Pass        |
+| Only logged in users can delete the list   | Pass        |
+
+7. Update a grocery list [story](https://github.com/ilaria-barletta/roomies-api/issues/12)
+
+| Test        | Outcome     |
+| ----------- | ----------- |
+| Only users who are a member or the creator of the lists associated `household` can update the list    | Pass        |
+| Only logged in users can update the list   | Pass        |
+
+8. Update a grocery list completion status [story](https://github.com/ilaria-barletta/roomies-api/issues/11)
+
+| Test        | Outcome     |
+| ----------- | ----------- |
+| Only users who are a member or the creator of the lists associated `household` can mark the list as complete/incomplete    | Pass        |
+| Only logged in users can mark the list as complete/incomplete   | Pass        |
+
+9. Create a grocery list item [story](https://github.com/ilaria-barletta/roomies-api/issues/14)
+
+| Test        | Outcome     |
+| ----------- | ----------- |
+| Users must provide a `name` for their grocery list item    | Pass        |
+| Users can optionally provide a `assignee` for their grocery list item     | Pass        |
+
+10. Update a grocery list item [story](https://github.com/ilaria-barletta/roomies-api/issues/9)
+
+| Test        | Outcome     |
+| ----------- | ----------- |
+| Users must provide a `name` for their grocery list item    | Pass        |
+| Users can optionally provide a `assignee` for their grocery list item     | Pass        |
+| Only a member of the associated household for the list can update a grocery list item    | Pass        |
+
+11. Delete a grocery list item [story](https://github.com/ilaria-barletta/roomies-api/issues/13)
+
+| Test        | Outcome     |
+| ----------- | ----------- |
+| Only a member of the associated household for the list can delete a grocery list item    | Pass        |
+
+12. Update a grocery list item completion status [story](https://github.com/ilaria-barletta/roomies-api/issues/10)
+
+| Test        | Outcome     |
+| ----------- | ----------- |
+| Only a member of the associated household for the list can update a grocery list item completion status  | Pass        |
+
+13. Create a grocery list comment [story](https://github.com/ilaria-barletta/roomies-api/issues/2)
+
+| Test        | Outcome     |
+| ----------- | ----------- |
+| Users must provide a `content` for their grocery list comment    | Pass        |
+
+14. Update a grocery list comment [story](https://github.com/ilaria-barletta/roomies-api/issues/7)
+
+| Test        | Outcome     |
+| ----------- | ----------- |
+| Users must provide a `content` for their grocery list item    | Pass        |
+| Only the `creator` of the comment can update it    | Pass        |
+
+15. Delete a grocery list comment [story](https://github.com/ilaria-barletta/roomies-api/issues/1)
+
+| Test        | Outcome     |
+| ----------- | ----------- |
+| Only the `creator` of the comment can delete it    | Pass        |
+
 # Deployment, Forking and Cloning 
 
 ## Deployment
