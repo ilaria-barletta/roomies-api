@@ -1,6 +1,8 @@
 # Roomies API 
 This repository contains the code which provides the API endpoints necessary to allow the Roomies application to retrieve and store its data. 
 
+![Roomies API Welcome](readme_images/api-image.png)
+
 # Planning & Design 
 
 ## Database Design 
@@ -188,6 +190,11 @@ I have tested the app thoroughly and you can see the outcome of the manual testi
 | ----------- | ----------- |
 | Only the `creator` of the comment can delete it    | Pass        |
 
+## Validators
+
+ * [python](https://pep8ci.herokuapp.com) testing
+  ![python example validator returning no errors](readme_images/python-validator.png)
+
 # Deployment, Forking and Cloning 
 
 ## Deployment
@@ -212,4 +219,13 @@ To clone this repository:
 
 ___
 # References & Credits
-* TBD
+* I used the Django Rest Framework Code Institute project as the reference for some of the parts of the project. In particular, the authentication, and filtering I learned from following along with that project. 
+
+I also used Stackoverflow for some common Django and Django Rest Framework questions: 
+
+1. https://stackoverflow.com/questions/76201342/how-to-pass-a-url-parameter-in-get-queryset-method-in-django-rest-view 
+2. https://stackoverflow.com/questions/431628/how-to-combine-multiple-querysets-in-django
+
+I also used the Django Rest Framework documentation to find out how to make the entire API only available to logged in users. 
+
+1. https://www.django-rest-framework.org/api-guide/permissions/ 
