@@ -60,6 +60,12 @@ I have also created API's to allow users to manage `Grocery Lists` for their hou
 Below is a screenshot from the API showing an example of one of the above API's 
 ![Grocery List API Example](readme_images/grocery-example.png)
 
+## Future Features 
+There are several future features that I could add to the API given more time. 
+
+1. Allow users to manage household bills by adding a `HouseholdBill` model and API's. 
+2. Allow users to further manage their household rent by adding a model for it and allowing different rent values for each household member. 
+
 ## Authentication and Permissions 
 
 ### Authentication 
