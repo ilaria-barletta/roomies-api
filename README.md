@@ -3,6 +3,8 @@ This repository contains the code which provides the API endpoints necessary to 
 
 ![Roomies API Welcome](readme_images/api-image.png)
 
+The live link to the API is here: https://roomiesapi-637170cefd22.herokuapp.com/
+The live link to UI is here: https://roomiesui-16b4bb6864ed.herokuapp.com/
 The UI repository is here: https://github.com/ilaria-barletta/roomies-ui
 
 # Planning & Design 
