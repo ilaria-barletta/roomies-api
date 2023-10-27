@@ -201,6 +201,35 @@ I have tested the app thoroughly and you can see the outcome of the manual testi
  * [python](https://pep8ci.herokuapp.com) testing
   ![python example validator returning no errors](readme_images/python-validator.png)
 
+## Bugs 
+
+### Fixed Bugs 
+`1`
+
+**Expected** : Users should only be able to delete household members
+
+
+**Testing** : I tested this case by calling the URL endpoint from the React UI with a member ID to delete. 
+
+
+**Result** : The API returned an error and the household member was not deleted.
+
+
+**Fix** : The reason for this issue was that I had used just an `APIView` to create the Household member detail view but had omitted the `delete` method. The reason was that I had also used generic api views elsewhere which handled that case for me. The fix here was just to populate the `delete` method in the view, which allowed deleting household members. 
+
+`2`
+
+**Expected** : Only logged in users should be able to list household members.
+
+
+**Testing** : I tested this by using the API UI directly without logging in before hand.
+
+
+**Result** : The API returned a list of household members, even though I was not logged in. 
+
+
+**Fix** : The cause of this issue was that I had not set permissions for the view, and also that I had not configured the default permission for the API in general. I fixed this by applying a default configuration for the API which requires all users to be logged in to access any API data. 
+
 # Deployment, Forking and Cloning 
 
 ## Deployment
