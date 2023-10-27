@@ -3,6 +3,8 @@ This repository contains the code which provides the API endpoints necessary to 
 
 ![Roomies API Welcome](readme_images/api-image.png)
 
+The UI repository is here: https://github.com/ilaria-barletta/roomies-ui
+
 # Planning & Design 
 
 ## Database Design 
